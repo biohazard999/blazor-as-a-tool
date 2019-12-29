@@ -5,9 +5,10 @@
     <RootNamespace>blazor_as_a_tool</RootNamespace>
     <IsPackable>true</IsPackable>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>blazor-as-a-tool</ToolCommandName>
-    
+    <ToolCommandName>blazor-as-a-tool</ToolCommandName>    
 		<PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts\tools</PackageOutputPath>
+    
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
 </Project>
