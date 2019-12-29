@@ -23,6 +23,8 @@ namespace blazor_as_a_tool
             Host.CreateDefaultBuilder(args)
                 //We use the path of the executing assembly, that is blazor_as_a_tool.dll in this case
                 .UseContentRoot(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
+                //Use life-cycle hooks of the windows services
+                .UseWindowsService()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

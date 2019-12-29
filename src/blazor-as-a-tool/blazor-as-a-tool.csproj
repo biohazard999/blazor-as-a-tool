@@ -7,8 +7,20 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>blazor-as-a-tool</ToolCommandName>    
 		<PackageOutputPath>$(MSBuildThisFileDirectory)..\..\artifacts\tools</PackageOutputPath>
-    
-    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+
+  <ItemGroup>  
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.1.0" />  
+  </ItemGroup>
+
+  <PropertyGroup>
+		<PatchDatesScriptLocation>$(MSBuildThisFileDirectory)patch-date.ps1</PatchDatesScriptLocation>
+  </PropertyGroup>
+
+  <Target Name="PatchFileDates" BeforeTargets="GenerateNuspec">
+    <!-- https://github.com/NuGet/Home/issues/7001 -->
+    <Message Text="PatchFileDates" />
+    <Exec Command="C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NonInteractive -executionpolicy Unrestricted -command &quot;&amp; { $(PatchDatesScriptLocation) } &quot;" LogStandardErrorAsError="True" ContinueOnError="False" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+  </Target>
 
 </Project>
